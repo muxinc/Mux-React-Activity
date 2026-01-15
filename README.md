@@ -64,7 +64,8 @@ bun run preview
 
 ## Learn more
 
-To learn more about Rsbuild, check out the following resources:
+To learn more about Mux, check out the following resources:
 
-- [Rsbuild documentation](https://rsbuild.rs) - explore Rsbuild features and APIs.
-- [Rsbuild GitHub repository](https://github.com/web-infra-dev/rsbuild) - your feedback and contributions are welcome!
+- [Mux documentation](https://docs.mux.com) - explore Mux features and APIs.
+- [Mux Player React](https://docs.mux.com/guides/mux-player-web) - learn how to use Mux Player in your React apps.
+- [React Activity Component](https://react.dev/reference/react/Activity) - learn about the Activity component in React 19.2.
