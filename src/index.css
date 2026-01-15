@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf")
+        format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf")
+        format("truetype");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf")
+        format("truetype");
+}
+
+@layer base {
+    :root {
+        color-scheme: dark;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        color: #f8fbff;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            sans-serif;
+        position: relative;
+        background:
+            radial-gradient(circle at 20% 20%, #0b2640, transparent 30%),
+            radial-gradient(circle at 80% 0, #1b3a7a, transparent 25%),
+            linear-gradient(180deg, #020917, #0a1122 60%, #060b16);
+    }
+
+    #root {
+        isolation: isolate;
+    }
+}
