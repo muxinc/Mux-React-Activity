@@ -1,6 +1,6 @@
 # Mux + React 19.2
 
-React 19.2 is a powerful library for building user interfaces. It provides a wide range of features and tools to help developers create high-quality, scalable, and maintainable applications. There are a ton of new features in this version of React that make user experiences really smooth. 
+React 19.2 is a powerful upgrade to React. It provides a wide range of features and tools to help developers create high-quality, scalable, and maintainable applications. There are a ton of new features in this version of React that make user experiences really smooth. 
 
 ## Activity Component
 
@@ -31,9 +31,8 @@ function App() {
 }
 ```
 
-When `mode` is set to `'hidden'`, the component's state and DOM are preserved but rendered with lower priority, making tab switching instant while keeping scroll positions and form inputs intact.
+This Example uses the Activity component to show you how to use it with the [mux-player-react component](https://www.npmjs.com/package/@mux/mux-player-react). This is perfect for video streaming apps where you want to preserve the user's progress and input state across tabs or views.
 
-This is perfect for video streaming apps where you want to preserve the user's progress and input state across tabs or views.
 
 ## Setup
 
