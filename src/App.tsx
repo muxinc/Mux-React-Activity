@@ -190,7 +190,7 @@ const HiddenButPlayingExample = () => {
   return (
     <ExampleCard
       title="Hidden but still playing"
-      description="Well this might not actually be a problem. It really depends on the experience you're looking for. Activity hides the player but, without pausing, the audio keeps playing in the background."
+      description="Well this might not actually be a problem. It really depends on the experience you're looking for. Activity hides the player but, without pausing, the audio keeps playing in the background. Unmute the audio and click the tabs/buttons to see it in action"
     >
       <TabSwitcher
         idPrefix="hidden"
