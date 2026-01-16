@@ -39,6 +39,26 @@ The Activity component is perfect for video streaming apps where you want to pre
 
 The Activity component is also useful for preserving the state of other UI elements, such as forms, tables and other dashboard type components, that need to maintain their state when switching views.
 
+## Activity + video demo
+
+### Problem: unmounting resets playback
+
+![Problem: unmounting resets playback](public/unmounted.gif)
+
+Without `Activity`, switching tabs unmounts the player, so returning to the video remounts the component and restarts playback from the beginning.
+
+### Hidden but still playing
+
+![Hidden but still playing](public/hide-play.gif)
+
+`Activity` keeps the player mounted when the tab hides, but unless you pause manually, audio continues in the background after switching away.
+
+### Finished: pause before hiding
+
+![Finished: pause before hiding](public/hide-pause.gif)
+
+Combining `Activity` with a `useLayoutEffect` pause keeps playback perfectly in sync—switching tabs pauses immediately, and because the player stays mounted, resuming picks up right where it left off.
+
 ## Setup
 
 Install the dependencies:

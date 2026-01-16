@@ -81,7 +81,8 @@ const TabSwitcher = ({ activeTab, onChange, idPrefix }: TabSwitcherProps) => (
         render={<Button className="w-full" />}
         className={`${tabButtonClasses} ${tabButtonActiveClasses}`}
       >
-        Notes tab
+        Click here to test the{" "}
+        <code className={codeBadgeClasses}>&lt;Activity/&gt;</code> component
       </Tabs.Tab>
       <Tabs.Indicator className={tabIndicatorClasses} />
     </Tabs.List>
@@ -114,7 +115,7 @@ const PausingPlayerPanel = ({
       hidden={!isVisible}
       className={panelClassName}
     >
-      <Player ref={playerRef} />
+      <Player autoPlay muted ref={playerRef} />
       <p className={panelNoteClasses}>
         Play the video, switch to notes, then come back—the pause position is
         preserved.
@@ -188,8 +189,8 @@ const HiddenButPlayingExample = () => {
 
   return (
     <ExampleCard
-      title="Problem: hidden but still playing"
-      description="Activity hides the player but, without pausing, the audio keeps playing in the background."
+      title="Hidden but still playing"
+      description="Well this might not actually be a problem. It really depends on the experience you're looking for. Activity hides the player but, without pausing, the audio keeps playing in the background."
     >
       <TabSwitcher
         idPrefix="hidden"
