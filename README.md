@@ -1,31 +1,61 @@
-# Mux + React 19.2
+# Mux + React 19.2 Activity Component
 
-React 19.2 is a powerful upgrade to React. It provides a wide range of features and tools to help developers create high-quality, scalable, and maintainable applications. There are a ton of new features in this version of React that make user experiences really smooth especially for video streaming apps. Use this repo to explore the new Activity component introduced in React 19.2.
+## The Problem
 
-## Activity Component
+When building video streaming apps with tabbed interfaces, you face a UX dilemma: **how do you preserve video playback position when users switch between tabs?**
 
-The `Activity` component is a new feature in React 19.2 that allows you to preserve the state and DOM of hidden UI while deprioritizing its rendering. It's perfect for tabs, navigation, or any UI that needs to maintain state when switching views.
+Traditional React unmounts components when they're hidden, which resets video playback to the beginning. This repo demonstrates three approaches to solving this problem using React 19.2's new `Activity` component with [Mux Player](https://www.npmjs.com/package/@mux/mux-player-react).
 
-Here's some example code:
+## Three Scenarios Compared
+
+### Scenario 1: No Activity Component (The Problem)
+
+**Problem:** Switching tabs unmounts the video player, losing all playback state.
+
+![Problem: unmounting resets playback](public/unmounted.gif)
+
+When you return to the video tab, the player remounts and playback restarts from the beginning. Users lose their progress.
+
+### Scenario 2: Activity Without Pause (Unfinished Solution)
+
+**Problem:** Video keeps playing in the background after switching tabs.
+
+![Hidden but still playing](public/hide-play.gif)
+
+Using `Activity` keeps the player mounted and preserves state, but audio continues playing when you switch away. This creates a confusing UX where users hear audio from a tab they can't see. This actually might not be a problem because it depends on the experience you're looking for. There may be a case where you'd want the video to keep playing.
+
+### Scenario 3: Activity With Auto-Pause (Complete Solution)
+
+**Solution:** Video pauses automatically when hidden, resumes seamlessly when visible.
+
+![Finished: pause before hiding](public/hide-pause.gif)
+
+Combining `Activity` with `useLayoutEffect` provides the ideal UX: the player pauses immediately when you switch tabs, and because the player stays mounted, returning to the tab resumes playback exactly where you left off.
+
+## What is the Activity Component?
+
+The `Activity` component is a new feature in React 19.2 that preserves the state and DOM of hidden UI while its rendering. Instead of unmounting components when they're hidden, `Activity` keeps them in memory while making them invisible.
+
+Here's a basic example:
 
 ```tsx
-import { Activity, useState } from 'react';
+import { Activity, useState } from "react";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState("home");
 
   return (
     <div>
       <nav>
-        <button onClick={() => setActiveTab('home')}>Home</button>
-        <button onClick={() => setActiveTab('profile')}>Profile</button>
+        <button onClick={() => setActiveTab("home")}>Home</button>
+        <button onClick={() => setActiveTab("profile")}>Profile</button>
       </nav>
 
-      <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+      <Activity mode={activeTab === "home" ? "visible" : "hidden"}>
         <HomeTab />
       </Activity>
 
-      <Activity mode={activeTab === 'profile' ? 'visible' : 'hidden'}>
+      <Activity mode={activeTab === "profile" ? "visible" : "hidden"}>
         <ProfileTab />
       </Activity>
     </div>
@@ -33,31 +63,7 @@ function App() {
 }
 ```
 
-## So why would a video streaming app use the Activity component?
-
-The Activity component is perfect for video streaming apps where you want to preserve the user's progress and input state across tabs or views. It allows you to maintain the state of the video player (we used [mux-player-react component](https://www.npmjs.com/package/@mux/mux-player-react)) even when the user switches to another tab or view. This is especially useful when the user's progress and input state are critical to the UX.
-
-The Activity component is also useful for preserving the state of other UI elements, such as forms, tables and other dashboard type components, that need to maintain their state when switching views.
-
-## Activity + video demo
-
-### Problem: unmounting resets playback
-
-![Problem: unmounting resets playback](public/unmounted.gif)
-
-Without `Activity`, switching tabs unmounts the player, so returning to the video remounts the component and restarts playback from the beginning.
-
-### Hidden but still playing
-
-![Hidden but still playing](public/hide-play.gif)
-
-`Activity` keeps the player mounted when the tab hides, but unless you pause manually, audio continues in the background after switching away.
-
-### Finished: pause before hiding
-
-![Finished: pause before hiding](public/hide-pause.gif)
-
-Combining `Activity` with a `useLayoutEffect` pause keeps playback perfectly in sync—switching tabs pauses immediately, and because the player stays mounted, resuming picks up right where it left off.
+This pattern is perfect for video players, forms, data tables, and any UI where preserving state across view changes is critical to the UX.
 
 ## Setup
 
